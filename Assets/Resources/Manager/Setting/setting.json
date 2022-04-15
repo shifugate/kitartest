@@ -1,0 +1,7 @@
+{
+	"show_fps": true,
+	"room_size": 300,
+	"anchor_reach": 100,
+	"room_max_size": 99999,
+	"anchor_max_reach": 1000
+}

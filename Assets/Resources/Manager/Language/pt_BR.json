@@ -1,0 +1,23 @@
+{
+	"common": 
+	{
+		"pt_token": "PORTUGUÊS",
+		"en_token": "ENGLISH",
+		"error_token": "ERRO",
+		"retry_token": "TENTAR NOVAMENTE",
+		"cancel_token": "CANCELAR",
+		"close_token": "FECHAR",
+		"ok_token": "OK",
+		"ar_token": "RA",
+		"download_setting_error_token": "FALHA AO DESCARREGAR CONFIGURAÇÕES",
+		"download_language_error_token": "FALHA AO DESCARREGAR LÍNGUAS",
+		"load_info_error_token": "FALHA AO DESCARREGAR INFORMAÇÕES",
+		"load_map_error_token": "FALHA AO DESCARREGAR MAPA",
+		"load_content_error_token": "FALHA AO DESCARREGAR CONTEÚDO",
+		"start_location_error_token": "FALHA AO INICIAR SERVIÇO DE LOCALIZAÇÃO",
+		"images_not_find_on_region_error_token": "NÃO FORAM ENCONTRADAS OBRAS NAS PROXIMIDADES",
+		"image_error_token": "FALHA AO DESCARREGAR IMAGEM",
+		"ar_lib_error_token": "FALHA AO GERAR CONTEÚDOS PARA DETECÇÃO",
+		"share_fail_token": "FALHA AO COMPARTILHAR",
+	}
+}
