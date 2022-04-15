@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using ARKit.MVC._Base;
-using ARKit.Util;
-using ARKit.UI._Screen.Setting;
+using KitAR.MVC._Base;
+using KitAR.Util;
+using KitAR.UI._Screen.Setting;
 using System.Collections;
-using ARKit.Manager;
-using ARKit.UI._Screen.Anchor;
+using KitAR.Manager;
+using KitAR.UI._Screen.Anchor;
 
-namespace ARKit.MVC.Home
+namespace KitAR.MVC.Home
 {
     public class HomeController : ControllerBase<HomeView, HomeModel>
     {

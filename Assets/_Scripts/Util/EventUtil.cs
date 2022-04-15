@@ -1,7 +1,8 @@
-﻿using System;
+﻿using KitAR.Helper.Anchor;
+using System;
 using UnityEngine;
 
-namespace ARKit.Util
+namespace KitAR.Util
 {
     public static class EventUtil
     {
@@ -18,10 +19,11 @@ namespace ARKit.Util
         public static class Anchror
         {
             public static Action CreateRoomComplete;
+            public static Action CreateAnchorComplete;
             public static Action RayOutOfRoom;
             public static Action RayInRoom;
             public static Action RayOutOfObject;
-            public static Action<GameObject, float> RayInObject;
+            public static Action<AnchorHelper> RayInObject;
         }
     }
 }

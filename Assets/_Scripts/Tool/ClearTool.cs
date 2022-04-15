@@ -3,18 +3,18 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace ARKit.Tool
+namespace KitAR.Tool
 {
     public class ClearTool
     {
-        [MenuItem("ARKit/Clear/Clear Player Prefs")]
+        [MenuItem("KitAR/Clear/Clear Player Prefs")]
         public static void ClearPlayerPrefs()
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
         }
 
-        [MenuItem("ARKit/Clear/Clear Persistence")]
+        [MenuItem("KitAR/Clear/Clear Persistence")]
         public static void ClearPersistence()
         {
             string[] files = Directory.GetFiles(Application.persistentDataPath);

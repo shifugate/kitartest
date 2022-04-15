@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ARKit.Manager.System.Support
+namespace KitAR.Manager.System.Support
 {
     public class SystemManagerFPSDisplaySupport : MonoBehaviour
     {

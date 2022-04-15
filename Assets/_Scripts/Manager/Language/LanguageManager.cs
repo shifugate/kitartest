@@ -1,13 +1,13 @@
-﻿using ARKit.Util;
+﻿using KitAR.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using ARKit.Manager.Language.Map;
+using KitAR.Manager.Language.Map;
 
-namespace ARKit.Manager.Language
+namespace KitAR.Manager.Language
 {
     public class LanguageManagerUpdate : UnityEvent { }
 

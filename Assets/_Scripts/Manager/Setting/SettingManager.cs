@@ -4,10 +4,10 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using ARKit.Data.Setting;
-using ARKit.Util;
+using KitAR.Data.Setting;
+using KitAR.Util;
 
-namespace ARKit.Manager.Setting
+namespace KitAR.Manager.Setting
 {
     public class SettingManager : MonoBehaviour
     {

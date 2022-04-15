@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ARKit.Manager.Language.Map
+namespace KitAR.Manager.Language.Map
 {
     public class LanguageManagerMap : MonoBehaviour
     {

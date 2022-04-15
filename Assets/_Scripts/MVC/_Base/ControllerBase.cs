@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ARKit.MVC._Base
+namespace KitAR.MVC._Base
 {
     public class ControllerBase<TView, TModel> : MonoBehaviour
     {

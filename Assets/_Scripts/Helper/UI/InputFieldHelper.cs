@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ARKit.Helper.UI
+namespace KitAR.Helper.UI
 {
     public class InputFieldHelper : MonoBehaviour
     {

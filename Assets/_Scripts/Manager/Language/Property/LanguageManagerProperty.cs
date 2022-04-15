@@ -1,13 +1,13 @@
 ﻿#if UNITY_EDITOR
-using ARKit.Manager.Language.Map;
-using ARKit.Manager.Language.Token;
+using KitAR.Manager.Language.Map;
+using KitAR.Manager.Language.Token;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace ARKit.Manager.Language.Property
+namespace KitAR.Manager.Language.Property
 {
     [CustomEditor(typeof(LanguageManagerMap))]
     public class LanguageManagerProperty : Editor

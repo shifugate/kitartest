@@ -1,6 +1,6 @@
-﻿using ARKit.MVC._Base;
+﻿using KitAR.MVC._Base;
 
-namespace ARKit.MVC.Home
+namespace KitAR.MVC.Home
 {
     public class HomeView : ViewBase<HomeController, HomeModel>
     {

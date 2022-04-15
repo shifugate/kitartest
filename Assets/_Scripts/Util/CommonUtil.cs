@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace ARKit.Util
+namespace KitAR.Util
 {
     public class CommonUtil
     {

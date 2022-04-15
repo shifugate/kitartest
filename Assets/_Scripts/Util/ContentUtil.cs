@@ -8,7 +8,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace ARKit.Util
+namespace KitAR.Util
 {
     public static class ContentUtil
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ARKit.Util
+namespace KitAR.Util
 {
     public static class SystemUtil
     {

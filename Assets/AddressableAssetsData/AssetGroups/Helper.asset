@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/_Addressables/Helper/Wall
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b67d4c12d1aaf6344af0f60f6971b64c
+    m_Address: Assets/_Addressables/Helper/Anchor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: acaac73b19862c54cb91e775aeb5dff1, type: 2}
   m_SchemaSet:

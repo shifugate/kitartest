@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using ARKit.Manager.Setting;
-using ARKit.Manager.System;
-using ARKit.Manager.Language;
-using ARKit.Manager.Anchor;
+using KitAR.Manager.Setting;
+using KitAR.Manager.System;
+using KitAR.Manager.Language;
+using KitAR.Manager.Anchor;
 
-namespace ARKit.Manager
+namespace KitAR.Manager
 {
     public class InitializerManagerComplete : UnityEvent { }
 

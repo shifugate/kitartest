@@ -1,4 +1,4 @@
-namespace ARKit.Manager.Language.Token
+namespace KitAR.Manager.Language.Token
 {
     public static class LanguageManagerToken
     {

@@ -5,7 +5,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace ARKit.Tool
+namespace KitAR.Tool
 {
     public class LanguageTool : EditorWindow
     {
@@ -14,7 +14,7 @@ namespace ARKit.Tool
 
         private static readonly string CLASS_EXPORT = $"{Application.dataPath}/_Scripts/Manager/Language/Token/";
 
-        [MenuItem("ARKit/Language/Generate Language Map Class")]
+        [MenuItem("KitAR/Language/Generate Language Map Class")]
         private static void GenerateLanguageMapClass()
         {
             string source = $"{Application.dataPath}/{SOURCE_PATH}";
@@ -44,7 +44,7 @@ namespace ARKit.Tool
             Dictionary<string, Dictionary<string, string>> json = JsonConvert
                 .DeserializeObject<Dictionary<string, Dictionary<string, string>>>(File.ReadAllText($"{source}/en_US.json"));
 
-            string result = "namespace ARKit.Manager.Language.Token\n{\n";
+            string result = "namespace KitAR.Manager.Language.Token\n{\n";
             result += "    public static class LanguageManagerToken\n    {\n";
 
             int count = 0;

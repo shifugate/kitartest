@@ -1,8 +1,8 @@
-﻿using ARKit.Manager.Setting;
-using ARKit.Manager.System.Support;
+﻿using KitAR.Manager.Setting;
+using KitAR.Manager.System.Support;
 using UnityEngine;
 
-namespace ARKit.Manager.System
+namespace KitAR.Manager.System
 {
     public class SystemManager : MonoBehaviour
     {

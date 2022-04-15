@@ -1,13 +1,13 @@
-﻿using ARKit.Helper.UI;
-using ARKit.Manager.Language.Token;
-using ARKit.Manager.Setting;
-using ARKit.Manager.System;
-using ARKit.Util;
+﻿using KitAR.Helper.UI;
+using KitAR.Manager.Language.Token;
+using KitAR.Manager.Setting;
+using KitAR.Manager.System;
+using KitAR.Util;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ARKit.UI._Screen.Setting
+namespace KitAR.UI._Screen.Setting
 {
     public class SettingUI : MonoBehaviour
     {

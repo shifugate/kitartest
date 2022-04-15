@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ARKit.Helper.Camera
+namespace KitAR.Helper.Camera
 {
     public class CameraHelper : MonoBehaviour
     {

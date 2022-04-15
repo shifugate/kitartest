@@ -1,4 +1,4 @@
-﻿namespace ARKit.Data.Setting
+﻿namespace KitAR.Data.Setting
 {
     public class SettingData
     {
