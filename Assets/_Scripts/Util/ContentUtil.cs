@@ -300,6 +300,17 @@ namespace KitAR.Util
             return result;
         }
 
+        public static Vector2 WorldToCanvas(Vector3 worldPosition, Camera camera = null)
+        {
+            if (camera == null)
+                camera = Camera.main;
+
+            Vector3 viewport_position = camera.WorldToViewportPoint(worldPosition);
+
+            return new Vector2((viewport_position.x * Screen.width),
+                               (viewport_position.y * Screen.height));
+        }
+
         public static class Constant
         {
             public enum Screen

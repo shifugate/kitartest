@@ -1,6 +1,5 @@
 ﻿using KitAR.Helper.Anchor;
 using System;
-using UnityEngine;
 
 namespace KitAR.Util
 {
@@ -21,6 +20,7 @@ namespace KitAR.Util
             public static Action CreateRoomComplete;
             public static Action RayOutOfRoom;
             public static Action RayInRoom;
+            public static Action<AnchorHelper, float> RayAnchor;
         }
     }
 }

@@ -178,16 +178,49 @@ namespace KitAR.Manager.Anchor
 
         private void UpdateRayInObject()
         {
+            AnchorHelper anchor;
+
             anchors = anchors.OrderBy(x => Vector3.Distance(x.transform.position, cameraHelper.transform.position)).ToList();
 
-            if (anchors.Count > 0 
+            if (anchors.Count > 0
                 && Vector3.Distance(anchors[0].transform.position, cameraHelper.transform.position) <= anchorReach)
+            {
+                anchor = anchors[0];
+
                 anchors[0].Selected();
+            }
             else if (anchors.Count > 0)
+            {
+                anchor = null;
+
                 anchors[0].Unselected();
+            }
+            else
+            {
+                anchor = null;
+            }
 
             for (int i = 1; i < anchors.Count; i++)
                 anchors[i].Unselected();
+
+            if (anchor == null)
+            {
+                EventUtil.Anchror.RayAnchor?.Invoke(null, 0);
+
+                return;
+            }
+
+            if (Physics.Raycast(cameraHelper.transform.position, cameraHelper.transform.forward, out RaycastHit hit, anchorReach))
+            {
+                if (hit.collider.gameObject.GetComponent<AnchorHelper>() == anchor)
+                    EventUtil.Anchror.RayAnchor?.Invoke(anchor, Vector3.Distance(anchor.transform.position, cameraHelper.transform.position));
+                else
+                    EventUtil.Anchror.RayAnchor?.Invoke(null, 0);
+            }
+            else
+            {
+                EventUtil.Anchror.RayAnchor?.Invoke(null, 0);
+            }
         }
 
         public void Enable()

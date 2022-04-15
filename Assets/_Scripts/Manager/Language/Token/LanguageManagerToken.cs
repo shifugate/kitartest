@@ -14,6 +14,7 @@ namespace KitAR.Manager.Language.Token
             public static string look_interaction_token { get { return LanguageManager.Instance.GetTranslation("common", "look_interaction_token"); } }
             public static string exit_interaction_token { get { return LanguageManager.Instance.GetTranslation("common", "exit_interaction_token"); } }
             public static string add_interaction_token { get { return LanguageManager.Instance.GetTranslation("common", "add_interaction_token"); } }
+            public static string distance_token { get { return LanguageManager.Instance.GetTranslation("common", "distance_token"); } }
         }
     }
 }
