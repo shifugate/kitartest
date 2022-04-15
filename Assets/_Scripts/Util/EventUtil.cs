@@ -19,11 +19,8 @@ namespace KitAR.Util
         public static class Anchror
         {
             public static Action CreateRoomComplete;
-            public static Action CreateAnchorComplete;
             public static Action RayOutOfRoom;
             public static Action RayInRoom;
-            public static Action RayOutOfObject;
-            public static Action<AnchorHelper> RayInObject;
         }
     }
 }

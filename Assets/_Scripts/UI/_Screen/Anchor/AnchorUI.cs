@@ -1,5 +1,4 @@
-﻿using KitAR.Helper.Anchor;
-using KitAR.Manager.Anchor;
+﻿using KitAR.Manager.Anchor;
 using KitAR.Manager.Language;
 using KitAR.Util;
 using UnityEngine;
@@ -16,18 +15,13 @@ namespace KitAR.UI._Screen.Anchor
         [SerializeField]
         private Image reticleImage;
 
-        private AnchorHelper anchor;
         private bool createRoomComplete;
-        private bool createAnchorComplete;
-        private bool inRoom;
 
         private void Awake()
         {
             AddListener();
 
             AnchorManager.Instance.Enable();
-
-            createAnchorComplete = true;
         }
 
         private void OnDestroy()
@@ -48,21 +42,15 @@ namespace KitAR.UI._Screen.Anchor
         private void AddListener()
         {
             EventUtil.Anchror.CreateRoomComplete += CreateRoomComplete;
-            EventUtil.Anchror.CreateAnchorComplete += CreateAnchorComplete;
             EventUtil.Anchror.RayInRoom += RayInRoom;
             EventUtil.Anchror.RayOutOfRoom += RayOutOfRoom;
-            EventUtil.Anchror.RayInObject += RayInObject;
-            EventUtil.Anchror.RayOutOfObject += RayOutOfObject;
         }
 
         private void RemoveListener() 
         {
             EventUtil.Anchror.CreateRoomComplete -= CreateRoomComplete;
-            EventUtil.Anchror.CreateAnchorComplete -= CreateAnchorComplete;
             EventUtil.Anchror.RayInRoom -= RayInRoom;
             EventUtil.Anchror.RayOutOfRoom -= RayOutOfRoom;
-            EventUtil.Anchror.RayInObject -= RayInObject;
-            EventUtil.Anchror.RayOutOfObject -= RayOutOfObject;
         }
 
         private void UpdateCursor()
@@ -74,50 +62,25 @@ namespace KitAR.UI._Screen.Anchor
         {
             createRoomComplete = true;
 
-            SetInteractionText(LanguageManager.Instance.GetTranslation("common", "add_interaction_token"));
-        }
-
-        private void CreateAnchorComplete()
-        {
-            createAnchorComplete = true;
+            SetInteractionText();
         }
 
         private void RayInRoom()
         {
-            inRoom = true;
-
-            reticleImage.color = Color.green;
+            reticleImage.enabled = true;
         }
 
         private void RayOutOfRoom()
         {
-            inRoom = false;
-
-            reticleImage.color = Color.red;
+            reticleImage.enabled = false;
         }
 
-        private void RayInObject(AnchorHelper anchor)
-        {
-            this.anchor = anchor;
-
-            SetInteractionText(LanguageManager.Instance.GetTranslation("common", "remove_interaction_token"));
-        }
-
-        private void RayOutOfObject()
-        {
-            this.anchor = null;
-
-            SetInteractionText(LanguageManager.Instance.GetTranslation("common", "add_interaction_token"));
-        }
-
-        private void SetInteractionText(string anchorMessage)
+        private void SetInteractionText()
         {
             string interactionText = $"{LanguageManager.Instance.GetTranslation("common", "move_interaction_token")}\n" +
                 $"{LanguageManager.Instance.GetTranslation("common", "look_interaction_token")}\n" +
-                $"{LanguageManager.Instance.GetTranslation("common", "exit_interaction_token")}";
-
-            if (anchorMessage != null)
-                interactionText += $"\n{anchorMessage}";
+                $"{LanguageManager.Instance.GetTranslation("common", "exit_interaction_token")}\n" +
+                $"{LanguageManager.Instance.GetTranslation("common", "add_interaction_token")}";
 
             this.interactionText.text = interactionText;
         }
@@ -131,21 +94,7 @@ namespace KitAR.UI._Screen.Anchor
                 EventUtil.Screen.LoadScreen?.Invoke(ContentUtil.Constant.Screen.Setting);
 
             if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (inRoom
-                    && createAnchorComplete
-                    && anchor == null)
-                {
-                    createAnchorComplete = false;
-
-                    AnchorManager.Instance.AddAnchor();
-                }
-                else if (createAnchorComplete 
-                    && anchor != null)
-                {
-                    AnchorManager.Instance.RemoveAnchor(anchor);
-                }
-            }
+                AnchorManager.Instance.AddAnchor();
         }
     }
 }

@@ -4,6 +4,7 @@ using KitAR.Manager.Setting;
 using KitAR.Util;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -35,7 +36,6 @@ namespace KitAR.Manager.Anchor
         private Coroutine updatetDetectionCR;
         private CameraHelper cameraHelper;
         private List<AnchorHelper> anchors = new List<AnchorHelper>();
-        private AnchorHelper anchor;
         private float roomSize;
         private float anchorReach;
         private bool inRoom;
@@ -93,8 +93,6 @@ namespace KitAR.Manager.Anchor
         private void SetContent()
         {
             inRoom = false;
-
-            anchor = null;
 
             roomSize = SettingManager.Instance.DataCurrent.room_size / 100f;
             anchorReach = SettingManager.Instance.DataCurrent.anchor_reach / 100f;
@@ -157,10 +155,8 @@ namespace KitAR.Manager.Anchor
 
         private void UpdateRayInRoom()
         {
-            Vector3 position = cameraHelper.transform.position + cameraHelper.transform.forward * anchorReach;
-
-            float distanceReticle = Vector3.Distance(Vector3.zero, position);
-            float distanceCamera = Vector2.Distance(Vector3.zero, cameraHelper.transform.position);
+            float distanceReticle = Vector3.Distance(Vector3.zero, cameraHelper.transform.position + cameraHelper.transform.forward * anchorReach);
+            float distanceCamera = Vector3.Distance(Vector3.zero, cameraHelper.transform.position);
 
             if (!inRoom 
                 && distanceReticle <= roomSize / 2f
@@ -182,28 +178,16 @@ namespace KitAR.Manager.Anchor
 
         private void UpdateRayInObject()
         {
-            if (Physics.Raycast(cameraHelper.transform.position, cameraHelper.transform.forward, out RaycastHit hit, anchorReach))
-            {
-                AnchorHelper anchor = hit.collider.gameObject.GetComponent<AnchorHelper>();
+            anchors = anchors.OrderBy(x => Vector3.Distance(x.transform.position, cameraHelper.transform.position)).ToList();
 
-                if (this.anchor != anchor)
-                {
-                    if (this.anchor != null)
-                        this.anchor.Unselected();
+            if (anchors.Count > 0 
+                && Vector3.Distance(anchors[0].transform.position, cameraHelper.transform.position) <= anchorReach)
+                anchors[0].Selected();
+            else if (anchors.Count > 0)
+                anchors[0].Unselected();
 
-                    this.anchor = anchor;
-                    this.anchor.Selected();
-
-                    EventUtil.Anchror.RayInObject?.Invoke(anchor);
-                }
-            }
-            else if (this.anchor != null)
-            {
-                this.anchor.Unselected();
-                this.anchor = null;
-
-                EventUtil.Anchror.RayOutOfObject?.Invoke();
-            }
+            for (int i = 1; i < anchors.Count; i++)
+                anchors[i].Unselected();
         }
 
         public void Enable()
@@ -227,13 +211,7 @@ namespace KitAR.Manager.Anchor
 
             anchor.transform.position = position;
 
-            EventUtil.Anchror.CreateAnchorComplete?.Invoke();
-        }
-
-        public void RemoveAnchor(AnchorHelper anchor)
-        {
-            if (anchor != null)
-                Destroy(anchor.gameObject);
+            anchors.Add(anchor);
         }
     }
 }

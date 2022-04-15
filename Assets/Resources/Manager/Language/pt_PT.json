@@ -10,7 +10,6 @@
 		"move_interaction_token": "PRESS AWSD TO MOVE CAMERA",
 		"look_interaction_token": "USE MOUSE TO LOOK",
 		"exit_interaction_token": "PRESS P TO RETURN SETTINGS",
-		"add_interaction_token": "PRESS SPACE TO ADD A NEW ANCHOR",
-		"remove_interaction_token": "PRESS SPACE TO REMOVE ANCHOR"
+		"add_interaction_token": "PRESS SPACE TO ADD A NEW ANCHOR"
 	}
 }
