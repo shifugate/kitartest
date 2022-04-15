@@ -34,11 +34,7 @@ namespace KitAR.Manager.System
 
         private void SetProperties()
         {
-            Screen.sleepTimeout = SleepTimeout.NeverSleep;
-            Screen.brightness = 1;
-
             Application.targetFrameRate = 120;
-            Input.multiTouchEnabled = true;
 
             FPSEnableAction(SettingManager.Instance.DataCurrent.show_fps);
         }
