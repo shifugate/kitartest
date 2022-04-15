@@ -13,7 +13,7 @@ namespace ARKit.Helper.Camera
         private const float maximumY = 90F;
         private const float moveSpeed = 0.01f;
 
-        private float rotationY = -60F;
+        private float rotationY = 0;
 
         private void Update()
         {

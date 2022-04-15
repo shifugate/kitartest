@@ -17,10 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: cf5b74e8653b0a2438ea55ebb30414b4
   m_SerializeEntries:
-  - m_GUID: 22da244b58a81d947a74421a29188a34
-    m_Address: Assets/_Addressables/Helper/Anchor
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 1358155b88d74d24c86d357b356b8118
     m_Address: Assets/_Addressables/Helper/Wall
     m_ReadOnly: 0

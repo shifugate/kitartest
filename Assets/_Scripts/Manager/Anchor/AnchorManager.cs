@@ -1,50 +1,96 @@
 ﻿using ARKit.Helper.Camera;
 using ARKit.Manager.Setting;
 using ARKit.Util;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
-namespace ARKit.Helper.Anchor
+namespace ARKit.Manager.Anchor
 {
-    public class AnchorHelper : MonoBehaviour
+    public class AnchorManager : MonoBehaviour
     {
+        #region Singleton
+        private static AnchorManager instance;
+        public static AnchorManager Instance { get { return instance; } }
+
+        public static void InstanceNW(InitializerManager manager)
+        {
+            if (instance == null)
+            {
+                instance = GameObject.Instantiate<AnchorManager>(Resources.Load<AnchorManager>("Manager/Anchor/AnchorManager"));
+                instance.name = "AnchorManager";
+            }
+
+            instance.Initialize(manager);
+        }
+        #endregion 
+
         [SerializeField]
         private Light ligth;
 
+        private Coroutine updatetDetectionCR;
         private CameraHelper cameraHelper;
         private float roomSize;
         private float anchorReach;
         private bool inRoom;
 
-        private void Awake()
+        private void Initialize(InitializerManager manager)
         {
-            SetProperties();
-            SetupRoom();
+            transform.SetParent(manager.transform);
+        }
+
+        private async void StartDetection()
+        {
+            StopDetection();
+            SetContent();
+
+            await SetupRoom();
+
             SetupLight();
+
+            updatetDetectionCR = StartCoroutine(UpdatetDetectionCR());
         }
 
-        private void OnDestroy()
+        private void StopDetection()
         {
-            cameraHelper.transform.position = Vector3.zero;
-            cameraHelper.transform.rotation = Quaternion.identity;
+            if (instance != null 
+                && updatetDetectionCR != null)
+                StopCoroutine(updatetDetectionCR);
 
-            Destroy(cameraHelper);
+            if (instance != null
+                && cameraHelper != null)
+            {
+                cameraHelper.transform.position = Vector3.zero;
+                cameraHelper.transform.rotation = Quaternion.identity;
+
+                Destroy(cameraHelper);
+            }
         }
 
-        private void Update()
+        private IEnumerator UpdatetDetectionCR()
         {
-            UpdateRayInRoom();
-            UpdateRayInObject();
+            while (true)
+            {
+                yield return new WaitForEndOfFrame();
+
+                UpdateRayInRoom();
+                UpdateRayInObject();
+            }
         }
 
-        private void SetProperties()
+        private void SetContent()
         {
-            cameraHelper = UnityEngine.Camera.main.gameObject.AddComponent<CameraHelper>();
+            inRoom = false;
 
             roomSize = SettingManager.Instance.DataCurrent.room_size / 100f;
             anchorReach = SettingManager.Instance.DataCurrent.anchor_reach / 100f;
+
+            cameraHelper = Camera.main.gameObject.AddComponent<CameraHelper>();
+            cameraHelper.transform.position = Vector3.zero;
+            cameraHelper.transform.rotation = Quaternion.identity;
         }
 
-        private async void SetupRoom()
+        private async Task SetupRoom()
         {
             GameObject roof = await ContentUtil.LoadContent<GameObject>("Helper/Wall/WallHelper.prefab", transform);
             roof.name = "Roof";
@@ -101,15 +147,15 @@ namespace ARKit.Helper.Anchor
 
             float distance = Vector3.Distance(Vector3.zero, position);
 
-            Debug.Log(position + " : " + distance + " : " + roomSize);
-
-            if (distance <= roomSize / 2f)
+            if (!inRoom 
+                && distance <= roomSize / 2f)
             {
                 inRoom = true;
 
                 EventUtil.Anchror.RayInRoom?.Invoke();
             }
-            else if (distance > roomSize / 2f)
+            else if (inRoom
+                && distance > roomSize / 2f)
             {
                 inRoom = false;
 
@@ -120,6 +166,16 @@ namespace ARKit.Helper.Anchor
         private void UpdateRayInObject()
         {
 
+        }
+
+        public void Enable()
+        {
+            StartDetection();
+        }
+
+        public void Disable()
+        {
+            StopDetection();
         }
     }
 }

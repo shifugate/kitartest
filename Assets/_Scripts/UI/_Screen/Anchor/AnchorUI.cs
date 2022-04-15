@@ -1,4 +1,5 @@
 ﻿using ARKit.Helper.Camera;
+using ARKit.Manager.Anchor;
 using ARKit.Manager.Language;
 using ARKit.Util;
 using UnityEngine;
@@ -20,11 +21,15 @@ namespace ARKit.UI._Screen.Anchor
         private void Awake()
         {
             AddListener();
+
+            AnchorManager.Instance.Enable();
         }
 
         private void OnDestroy()
         {
             RemoveListener();
+
+            AnchorManager.Instance.Disable();
 
             Cursor.visible = true;
         }

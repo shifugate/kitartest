@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using ARKit.Manager.Setting;
 using ARKit.Manager.System;
 using ARKit.Manager.Language;
+using ARKit.Manager.Anchor;
 
 namespace ARKit.Manager
 {
@@ -60,6 +61,7 @@ namespace ARKit.Manager
 
             SystemManager.InstanceNW(this);
             LanguageManager.InstanceNW(this);
+            AnchorManager.InstanceNW(this);
 
             initializeComplete = true;
         }
