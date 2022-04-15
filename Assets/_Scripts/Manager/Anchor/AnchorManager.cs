@@ -202,6 +202,9 @@ namespace KitAR.Manager.Anchor
 
         public async void AddAnchor()
         {
+            if (!inRoom)
+                return;
+
             Vector3 position = cameraHelper.transform.position + cameraHelper.transform.forward * anchorReach;
 
             AnchorHelper anchor = await ContentUtil.LoadContent<AnchorHelper>("Helper/Anchor/AnchorHelper.prefab", contenHolder);

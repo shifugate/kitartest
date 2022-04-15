@@ -67,12 +67,12 @@ namespace KitAR.UI._Screen.Anchor
 
         private void RayInRoom()
         {
-            reticleImage.enabled = true;
+            reticleImage.color = Color.yellow;
         }
 
         private void RayOutOfRoom()
         {
-            reticleImage.enabled = false;
+            reticleImage.color = Color.red;
         }
 
         private void SetInteractionText()
